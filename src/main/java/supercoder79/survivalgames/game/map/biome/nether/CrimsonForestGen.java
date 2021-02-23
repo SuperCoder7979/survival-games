@@ -46,22 +46,22 @@ public final class CrimsonForestGen implements BiomeGen {
 
     @Override
     public double upperLerpHigh() {
-        return 24;
+        return 16;
     }
 
     @Override
     public double upperLerpLow() {
-        return 16;
+        return 8;
     }
 
     @Override
     public double lowerLerpHigh() {
-        return 16;
+        return 12;
     }
 
     @Override
     public double lowerLerpLow() {
-        return 8;
+        return 4;
     }
 
     @Override
@@ -81,7 +81,7 @@ public final class CrimsonForestGen implements BiomeGen {
 
     @Override
     public RegistryKey<Biome> getFakingBiome() {
-        return BiomeKeys.WARPED_FOREST;
+        return BiomeKeys.CRIMSON_FOREST;
     }
 
     @Override

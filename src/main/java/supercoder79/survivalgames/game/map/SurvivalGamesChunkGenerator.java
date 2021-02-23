@@ -123,6 +123,28 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
 
 			generators.add(outskirtGenerator);
 		}
+		for (int i = 0; i < config.netherTownStructures; i++) {
+			int startX = random.nextInt(config.borderConfig.startSize / 2) - random.nextInt(config.borderConfig.startSize / 2);
+			int startZ = random.nextInt(config.borderConfig.startSize / 2) - random.nextInt(config.borderConfig.startSize / 2);
+
+			if (!this.noiseGenerator.shouldOutskirtsSpawn(startX, startZ)) {
+				continue;
+			}
+
+			BlockPos start = new BlockPos(startX, 0, startZ);
+			ChunkPos chunkPos = new ChunkPos(start);
+
+			if (mask.isIn(chunkPos)) {
+				continue;
+			}
+
+			SurvivalGamesJigsawGenerator outskirtGenerator = new SurvivalGamesJigsawGenerator(server, this, piecesByChunk);
+			outskirtGenerator.arrangePieces(start, new Identifier("survivalgames", "nether_outskirts_fort"), 0);
+
+			mask.and(chunkPos);
+
+			generators.add(outskirtGenerator);
+		}
 
 		this.jigsawGenerator = generators;
 

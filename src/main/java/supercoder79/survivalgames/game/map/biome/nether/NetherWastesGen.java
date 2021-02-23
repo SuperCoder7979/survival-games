@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class NetherWastesGen implements BiomeGen {
     public static final NetherWastesGen INSTANCE = new NetherWastesGen();
-    public static final OpenSimplexNoise GOLD_NOISE = new OpenSimplexNoise(13);
+    public static final OpenSimplexNoise GOLD_NOISE = new OpenSimplexNoise(14);
 
     @Override
     public RegistryKey<Biome> getFakingBiome() {
@@ -32,7 +32,7 @@ public class NetherWastesGen implements BiomeGen {
 
     @Override
     public double upperLerpHigh() {
-        return 10;
+        return 8;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class NetherWastesGen implements BiomeGen {
 
     @Override
     public double lowerLerpHigh() {
-        return 8;
+        return 6;
     }
 
     @Override
@@ -52,12 +52,12 @@ public class NetherWastesGen implements BiomeGen {
 
     @Override
     public double detailFactor() {
-        return 16;
+        return 4;
     }
 
     @Override
     public BlockState topState(Random random, int x, int z) {
-        if(random.nextDouble() <= 0.05 + GOLD_NOISE.eval(x / 30.0, z / 30.0) * 0.1) {
+        if(random.nextDouble() <= 0.1 + GOLD_NOISE.eval(x / 30.0, z / 30.0) * 0.1) {
             return Blocks.NETHER_GOLD_ORE.getDefaultState();
         }
         return Blocks.NETHERRACK.getDefaultState();

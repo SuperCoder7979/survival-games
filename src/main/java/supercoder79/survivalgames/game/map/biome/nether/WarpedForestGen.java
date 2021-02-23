@@ -46,7 +46,7 @@ public final class WarpedForestGen implements BiomeGen {
 
     @Override
     public double upperLerpHigh() {
-        return 20;
+        return 16;
     }
 
     @Override
