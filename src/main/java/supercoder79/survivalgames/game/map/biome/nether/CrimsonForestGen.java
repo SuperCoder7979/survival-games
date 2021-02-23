@@ -16,11 +16,15 @@ import net.minecraft.world.biome.BiomeKeys;
 public final class CrimsonForestGen implements BiomeGen {
     public static final CrimsonForestGen INSTANCE = new CrimsonForestGen();
     public static final OpenSimplexNoise WART_NOISE = new OpenSimplexNoise(13);
+    public static final OpenSimplexNoise LIGHT_NOISE = new OpenSimplexNoise(12);
 
     @Override
     public BlockState topState(Random random, int x, int z) {
         if (random.nextDouble() <= 0.1 + WART_NOISE.eval(x / 30.0, z / 30.0) * 0.1) {
             return Blocks.NETHER_WART_BLOCK.getDefaultState();
+        }
+        if (random.nextDouble() <= 0.05 + LIGHT_NOISE.eval(x / 40.0, z / 40.0) * 0.1) {
+            return Blocks.SHROOMLIGHT.getDefaultState();
         }
         return Blocks.CRIMSON_NYLIUM.getDefaultState();
     }

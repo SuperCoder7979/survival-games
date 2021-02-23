@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.util.Identifier;
 import supercoder79.survivalgames.game.map.biome.generator.BiomeGenerator;
 import supercoder79.survivalgames.game.map.noise.NoiseGenerator;
 import xyz.nucleoid.plasmid.game.config.PlayerConfig;
+import net.minecraft.world.dimension.DimensionType;
 
 import net.minecraft.item.ItemStack;
 
@@ -18,7 +20,8 @@ public class SurvivalGamesConfig {
 			Codec.INT.fieldOf("outskirts_building_count").forGetter(config -> config.outskirtsBuildingCount),
 			BiomeGenerator.CODEC.fieldOf("biome_generator").forGetter(config -> config.biomeGenerator),
 			NoiseGenerator.CODEC.fieldOf("noise_generator").forGetter(config -> config.noiseGenerator),
-			ItemStack.CODEC.listOf().fieldOf("kit").forGetter(config -> config.kit)
+			ItemStack.CODEC.listOf().fieldOf("kit").forGetter(config -> config.kit),
+			Identifier.CODEC.optionalFieldOf("dimension", DimensionType.OVERWORLD_ID).forGetter(config -> config.dimension)
 	).apply(instance, SurvivalGamesConfig::new));
 	public final WorldBorderConfig borderConfig;
 	public final PlayerConfig playerConfig;
@@ -27,8 +30,9 @@ public class SurvivalGamesConfig {
 	public final BiomeGenerator biomeGenerator;
 	public final NoiseGenerator noiseGenerator;
 	public final List<ItemStack> kit;
+	public final Identifier dimension;
 
-	public SurvivalGamesConfig(WorldBorderConfig borderConfig, PlayerConfig playerConfig, int townDepth, int outskirtsBuildingCount, BiomeGenerator biomeGenerator, NoiseGenerator noiseGenerator, List<ItemStack> kit) {
+	public SurvivalGamesConfig(WorldBorderConfig borderConfig, PlayerConfig playerConfig, int townDepth, int outskirtsBuildingCount, BiomeGenerator biomeGenerator, NoiseGenerator noiseGenerator, List<ItemStack> kit, Identifier dimension) {
 		this.borderConfig = borderConfig;
 		this.playerConfig = playerConfig;
 		this.townDepth = townDepth;
@@ -36,5 +40,6 @@ public class SurvivalGamesConfig {
 		this.biomeGenerator = biomeGenerator;
 		this.noiseGenerator = noiseGenerator;
 		this.kit = kit;
+		this.dimension = dimension;
 	}
 }

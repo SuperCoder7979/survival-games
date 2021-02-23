@@ -6,9 +6,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
-import supercoder79.survivalgames.game.map.biome.BiomeGen;;
+import supercoder79.survivalgames.game.map.biome.BiomeGen;
+import supercoder79.survivalgames.game.map.gen.FireGen;
 import xyz.nucleoid.plasmid.game.gen.MapGen;
-import xyz.nucleoid.plasmid.game.gen.feature.ShrubGen;
 
 import java.util.Random;
 
@@ -75,10 +75,13 @@ public class NetherWastesGen implements BiomeGen {
 
     @Override
     public double modifyTreeChance(double original) {
-        return 0;
+        return 8;
     }
     @Override
     public MapGen tree(int x, int z, Random random) {
-        return ShrubGen.INSTANCE;
+        if(random.nextInt(3) == 0) {
+            return PiglinGen.INSTANCE;
+        }
+        return FireGen.INSTANCE;
     }
 }

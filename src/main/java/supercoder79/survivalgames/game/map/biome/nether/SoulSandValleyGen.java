@@ -5,6 +5,7 @@ import java.util.Random;
 import kdotjpg.opensimplex.OpenSimplexNoise;
 import supercoder79.survivalgames.game.map.biome.BiomeGen;
 import supercoder79.survivalgames.game.map.gen.BranchingTreeGen;
+import supercoder79.survivalgames.game.map.gen.FireGen;
 import xyz.nucleoid.plasmid.game.gen.MapGen;
 import xyz.nucleoid.plasmid.game.gen.feature.ShrubGen;
 import net.minecraft.block.BlockState;
@@ -69,7 +70,9 @@ public final class SoulSandValleyGen implements BiomeGen {
 
     @Override
     public MapGen tree(int x, int z, Random random) {
-
+        if(random.nextInt(3) == 0) {
+            return FireGen.INSTANCE;
+        }
         return BranchingTreeGen.BONE;
     }
 

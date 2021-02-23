@@ -16,11 +16,15 @@ import net.minecraft.world.biome.BiomeKeys;
 public final class WarpedForestGen implements BiomeGen {
     public static final WarpedForestGen INSTANCE = new WarpedForestGen();
     public static final OpenSimplexNoise WART_NOISE = new OpenSimplexNoise(13);
+    public static final OpenSimplexNoise LIGHT_NOISE = new OpenSimplexNoise(12);
 
     @Override
     public BlockState topState(Random random, int x, int z) {
         if (random.nextDouble() <= 0.1 + WART_NOISE.eval(x / 30.0, z / 30.0) * 0.1) {
             return Blocks.WARPED_WART_BLOCK.getDefaultState();
+        }
+        if (random.nextDouble() <= 0.05 + LIGHT_NOISE.eval(x / 30.0, z / 30.0) * 0.1) {
+            return Blocks.SHROOMLIGHT.getDefaultState();
         }
         return Blocks.WARPED_NYLIUM.getDefaultState();
     }
