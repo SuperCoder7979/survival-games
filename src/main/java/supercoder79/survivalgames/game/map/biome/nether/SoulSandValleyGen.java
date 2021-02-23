@@ -70,7 +70,7 @@ public final class SoulSandValleyGen implements BiomeGen {
 
     @Override
     public MapGen tree(int x, int z, Random random) {
-        if(random.nextInt(3) == 0) {
+        if (random.nextInt(3) == 0) {
             return FireGen.INSTANCE;
         }
         return BranchingTreeGen.BONE;

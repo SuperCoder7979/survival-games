@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class FireGen implements MapGen {
     public static final FireGen INSTANCE = new FireGen();
+
     @Override
     public void generate(ServerWorldAccess world, BlockPos pos, Random random) {
         BlockPos.Mutable mutable = pos.mutableCopy();

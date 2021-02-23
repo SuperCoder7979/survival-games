@@ -11,6 +11,7 @@ import java.util.Random;
 
 public class PiglinGen implements MapGen {
     public static final PiglinGen INSTANCE = new PiglinGen();
+
     @Override
     public void generate(ServerWorldAccess world, BlockPos pos, Random random) {
         PiglinEntity piglin = new PiglinEntity(EntityType.PIGLIN, world.toServerWorld());

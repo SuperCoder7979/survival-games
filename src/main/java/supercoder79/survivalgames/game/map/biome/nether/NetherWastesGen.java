@@ -20,6 +20,7 @@ public class NetherWastesGen implements BiomeGen {
     public RegistryKey<Biome> getFakingBiome() {
         return BiomeKeys.NETHER_WASTES;
     }
+
     @Override
     public double upperNoiseFactor() {
         return 1;
@@ -57,7 +58,7 @@ public class NetherWastesGen implements BiomeGen {
 
     @Override
     public BlockState topState(Random random, int x, int z) {
-        if(random.nextDouble() <= 0.1 + GOLD_NOISE.eval(x / 30.0, z / 30.0) * 0.1) {
+        if (random.nextDouble() <= 0.1 + GOLD_NOISE.eval(x / 30.0, z / 30.0) * 0.1) {
             return Blocks.NETHER_GOLD_ORE.getDefaultState();
         }
         return Blocks.NETHERRACK.getDefaultState();
@@ -77,9 +78,10 @@ public class NetherWastesGen implements BiomeGen {
     public double modifyTreeChance(double original) {
         return 8;
     }
+
     @Override
     public MapGen tree(int x, int z, Random random) {
-        if(random.nextInt(3) == 0) {
+        if (random.nextInt(3) == 0) {
             return PiglinGen.INSTANCE;
         }
         return FireGen.INSTANCE;
