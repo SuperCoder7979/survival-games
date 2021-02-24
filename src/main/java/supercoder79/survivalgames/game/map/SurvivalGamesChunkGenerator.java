@@ -70,6 +70,9 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
     private final Long2ObjectMap<List<PoolStructurePiece>> piecesByChunk;
     private final List<SurvivalGamesJigsawGenerator> jigsawGenerator;
 
+    private final BlockState defaultState;
+    private final BlockState defaultFluid;
+
     public SurvivalGamesChunkGenerator(MinecraftServer server, SurvivalGamesConfig config) {
         super(server);
         Random random = new Random();
@@ -89,6 +92,13 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
         List<SurvivalGamesJigsawGenerator> generators = new ArrayList<>();
 
         this.noiseGenerator.initialize(random, config);
+        if(config.dimension.getPath().equals("the_nether")) {
+            this.defaultState = Blocks.NETHERRACK.getDefaultState();
+            this.defaultFluid = Blocks.LAVA.getDefaultState();
+        } else {
+            this.defaultState = Blocks.STONE.getDefaultState();
+            this.defaultFluid = Blocks.WATER.getDefaultState();
+        }
 
         ChunkMask mask = new ChunkMask();
         ChunkBox townArea = new ChunkBox();
@@ -117,29 +127,7 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
             }
 
             SurvivalGamesJigsawGenerator outskirtGenerator = new SurvivalGamesJigsawGenerator(server, this, piecesByChunk);
-            outskirtGenerator.arrangePieces(start, new Identifier("survivalgames", "outskirts_building"), 0);
-
-            mask.and(chunkPos);
-
-            generators.add(outskirtGenerator);
-        }
-        for (int i = 0; i < config.netherTownStructures; i++) {
-            int startX = random.nextInt(config.borderConfig.startSize / 2) - random.nextInt(config.borderConfig.startSize / 2);
-            int startZ = random.nextInt(config.borderConfig.startSize / 2) - random.nextInt(config.borderConfig.startSize / 2);
-
-            if (!this.noiseGenerator.shouldOutskirtsSpawn(startX, startZ)) {
-                continue;
-            }
-
-            BlockPos start = new BlockPos(startX, 0, startZ);
-            ChunkPos chunkPos = new ChunkPos(start);
-
-            if (mask.isIn(chunkPos)) {
-                continue;
-            }
-
-            SurvivalGamesJigsawGenerator outskirtGenerator = new SurvivalGamesJigsawGenerator(server, this, piecesByChunk);
-            outskirtGenerator.arrangePieces(start, new Identifier("survivalgames", "nether_outskirts"), 0);
+            outskirtGenerator.arrangePieces(start, new Identifier("survivalgames", config.dimension.getPath() + "_outskirts_buildings"), 0);
 
             mask.and(chunkPos);
 
@@ -205,7 +193,7 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
                 int genHeight = Math.max(height, 48);
                 for (int y = 0; y <= genHeight; y++) {
                     // Simple surface building
-                    BlockState state = Blocks.STONE.getDefaultState();
+                    BlockState state = this.defaultState;
                     if (y == height) {
                         // If the height and the generation height are the same, it means that we're on land
                         if (height == genHeight) {
@@ -222,7 +210,7 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
 
                     // If the y is higher than the land height, then we must place water
                     if (y > height) {
-                        state = Blocks.WATER.getDefaultState();
+                        state = defaultFluid;
                     }
 
                     // Set the state here

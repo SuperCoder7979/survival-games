@@ -21,8 +21,7 @@ public class SurvivalGamesConfig {
 			BiomeGenerator.CODEC.fieldOf("biome_generator").forGetter(config -> config.biomeGenerator),
 			NoiseGenerator.CODEC.fieldOf("noise_generator").forGetter(config -> config.noiseGenerator),
 			ItemStack.CODEC.listOf().fieldOf("kit").forGetter(config -> config.kit),
-			Identifier.CODEC.optionalFieldOf("dimension", DimensionType.OVERWORLD_ID).forGetter(config -> config.dimension),
-			Codec.INT.optionalFieldOf("nether_building_count", 0).forGetter(config -> config.netherTownStructures)
+			Identifier.CODEC.optionalFieldOf("dimension", DimensionType.OVERWORLD_ID).forGetter(config -> config.dimension)
 	).apply(instance, SurvivalGamesConfig::new));
 	public final WorldBorderConfig borderConfig;
 	public final PlayerConfig playerConfig;
@@ -32,9 +31,8 @@ public class SurvivalGamesConfig {
 	public final NoiseGenerator noiseGenerator;
 	public final List<ItemStack> kit;
 	public final Identifier dimension;
-	public final int netherTownStructures;
 
-	public SurvivalGamesConfig(WorldBorderConfig borderConfig, PlayerConfig playerConfig, int townDepth, int outskirtsBuildingCount, BiomeGenerator biomeGenerator, NoiseGenerator noiseGenerator, List<ItemStack> kit, Identifier dimension, int netherTownStructures) {
+	public SurvivalGamesConfig(WorldBorderConfig borderConfig, PlayerConfig playerConfig, int townDepth, int outskirtsBuildingCount, BiomeGenerator biomeGenerator, NoiseGenerator noiseGenerator, List<ItemStack> kit, Identifier dimension) {
 		this.borderConfig = borderConfig;
 		this.playerConfig = playerConfig;
 		this.townDepth = townDepth;
@@ -43,6 +41,5 @@ public class SurvivalGamesConfig {
 		this.noiseGenerator = noiseGenerator;
 		this.kit = kit;
 		this.dimension = dimension;
-		this.netherTownStructures = netherTownStructures;
 	}
 }

@@ -13,8 +13,7 @@
     "max": 100
   },
   "town_depth": -6,
-  "outskirts_building_count": 0,
-  "nether_building_count": 10,
+  "outskirts_building_count": 10,
   "biome_generator": {
     "type": "survivalgames:nether"
   },
