@@ -19,7 +19,7 @@ public class BranchingTreeGen implements MapGen {
     public static final MapGen WARPED = new BranchingTreeGen(Blocks.WARPED_STEM.getDefaultState(), Blocks.WARPED_WART_BLOCK.getDefaultState(), Blocks.WARPED_NYLIUM.getDefaultState(), 12, 0);
     public static final MapGen CRIMSON = new BranchingTreeGen(Blocks.CRIMSON_STEM.getDefaultState(), Blocks.NETHER_WART_BLOCK.getDefaultState(), Blocks.CRIMSON_NYLIUM.getDefaultState(), 12, 0);
     public static final MapGen BONE = new BranchingTreeGen(Blocks.BONE_BLOCK.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.SOUL_SOIL.getDefaultState(), 4, 1);
-
+    public static final MapGen BASALT_COLUMN = new BranchingTreeGen(Blocks.BASALT.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.BASALT.getDefaultState(), 6, 0);
 
     private final BlockState log;
     private final BlockState leaves;

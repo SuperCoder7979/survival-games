@@ -2,10 +2,7 @@ package supercoder79.survivalgames.game.map.biome.generator;
 
 import com.mojang.serialization.Codec;
 import supercoder79.survivalgames.game.map.biome.BiomeGen;
-import supercoder79.survivalgames.game.map.biome.nether.CrimsonForestGen;
-import supercoder79.survivalgames.game.map.biome.nether.NetherWastesGen;
-import supercoder79.survivalgames.game.map.biome.nether.SoulSandValleyGen;
-import supercoder79.survivalgames.game.map.biome.nether.WarpedForestGen;
+import supercoder79.survivalgames.game.map.biome.nether.*;
 
 public class NetherBiomeGenerator implements BiomeGenerator{
     public static final Codec<NetherBiomeGenerator> CODEC = Codec.unit(new NetherBiomeGenerator());
@@ -18,6 +15,8 @@ public class NetherBiomeGenerator implements BiomeGenerator{
             } else {
                 return SoulSandValleyGen.INSTANCE;
             }
+        } else if(rainfall < 0.5) {
+            return BasaltDeltasGen.INSTANCE;
         } else {
             if(temperature < 0.5) {
                 return CrimsonForestGen.INSTANCE;
