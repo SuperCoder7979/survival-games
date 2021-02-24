@@ -124,7 +124,7 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
 			}
 
 			SurvivalGamesJigsawGenerator outskirtGenerator = new SurvivalGamesJigsawGenerator(server, this, piecesByChunk);
-			outskirtGenerator.arrangePieces(start, new Identifier("survivalgames", config.dimension.getPath() + "_outskirts_buildings"), 0);
+			outskirtGenerator.arrangePieces(start, new Identifier("survivalgames", config.buildingType.getPath() + "_outskirts_buildings"), 0);
 
 			mask.and(chunkPos);
 
