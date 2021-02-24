@@ -139,7 +139,7 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
             }
 
             SurvivalGamesJigsawGenerator outskirtGenerator = new SurvivalGamesJigsawGenerator(server, this, piecesByChunk);
-            outskirtGenerator.arrangePieces(start, new Identifier("survivalgames", "nether_outskirts_fort"), 0);
+            outskirtGenerator.arrangePieces(start, new Identifier("survivalgames", "nether_outskirts"), 0);
 
             mask.and(chunkPos);
 
@@ -164,8 +164,8 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
 
         // To smooth into other chunks, we need to gather all of the nearby structures
         Set<PoolStructurePiece> pieces = new ObjectOpenHashSet<>();
-        for (int x = -1; x <= 1; x++) {
-            for (int z = -1; z <= 1; z++) {
+        for(int x = -1; x <= 1; x++) {
+            for(int z = -1; z <= 1; z++) {
                 pieces.addAll(this.piecesByChunk.get(new ChunkPos(chunk.getPos().x + x, chunk.getPos().z + z).toLong()));
             }
         }
@@ -185,7 +185,7 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
                     BlockBox box = piece.getBoundingBox();
                     if (piece.getPoolElement().getProjection() == StructurePool.Projection.RIGID) {
                         // At structure: raise to level
-                        if (box.intersectsXZ(x, z, x, z)) {
+                        if (box.intersectsXZ(x, z, x, z )) {
                             height = Math.max(48, piece.getPos().getY());
                         } else if (box.intersectsXZ(x - 8, z - 8, x + 8, z + 8)) {
                             // Within radius: smooth
@@ -336,7 +336,7 @@ public class SurvivalGamesChunkGenerator extends GameChunkGenerator {
     @Override
     public void populateBiomes(Registry<Biome> registry, Chunk chunk) {
         ChunkPos chunkPos = chunk.getPos();
-        ((ProtoChunk) chunk).setBiomes(new BiomeArray(registry, chunkPos, this.biomeSource));
+        ((ProtoChunk)chunk).setBiomes(new BiomeArray(registry, chunkPos, this.biomeSource));
     }
 
     @Override
