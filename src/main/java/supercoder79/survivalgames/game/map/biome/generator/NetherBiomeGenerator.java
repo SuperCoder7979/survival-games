@@ -15,7 +15,7 @@ public class NetherBiomeGenerator implements BiomeGenerator{
             } else {
                 return SoulSandValleyGen.INSTANCE;
             }
-        } else if(rainfall < 0.5) {
+        } else if(rainfall < 0.46) {
             return BasaltDeltasGen.INSTANCE;
         } else {
             if(temperature < 0.5) {

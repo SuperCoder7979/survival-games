@@ -24,12 +24,12 @@ public class BasaltDeltasGen implements BiomeGen {
 
     @Override
     public double upperNoiseFactor() {
-        return 24;
+        return 20;
     }
 
     @Override
     public double lowerNoiseFactor() {
-        return 16;
+        return 12;
     }
 
     @Override
