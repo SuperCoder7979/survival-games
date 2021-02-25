@@ -37,6 +37,10 @@
     {
       "id": "minecraft:cobblestone",
       "Count": 16
+    },
+    {
+      "id": "minecraft:golden_boots",
+      "Count": 1
     }
   ]
 }
