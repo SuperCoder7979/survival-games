@@ -52,5 +52,6 @@
     "Properties": {
       "level": "0"
     }
-  }
+  },
+  "fire_resistance_on_init": true
 }

@@ -4,6 +4,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.s2c.play.WorldBorderS2CPacket;
@@ -52,6 +54,8 @@ public class SurvivalGamesActive {
 	private boolean borderShrinkStarted = false;
 	private long gameCloseTick = Long.MAX_VALUE;
 	private boolean finished = false;
+
+	private final StatusEffectInstance fireResistance = new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 600, 1);
 
 	private SurvivalGamesActive(GameSpace world, SurvivalGamesMap map, SurvivalGamesConfig config, PlayerSet participants, GlobalWidgets widgets) {
 		this.world = world;
@@ -124,6 +128,10 @@ public class SurvivalGamesActive {
 
 			for (ItemStack stack : config.kit) {
 				player.inventory.insertStack(stack.copy());
+			}
+
+			if (config.fireResistance) {
+				player.addStatusEffect(fireResistance);
 			}
 		}
 	}
