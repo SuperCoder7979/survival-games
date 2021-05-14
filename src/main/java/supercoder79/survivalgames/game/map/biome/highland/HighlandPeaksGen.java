@@ -17,6 +17,7 @@ public class HighlandPeaksGen implements BiomeGen {
     public static final BiomeGen INSTANCE = new HighlandPeaksGen();
     public final OpenSimplexNoise GRASS_NOISE = new OpenSimplexNoise(23);
     public final OpenSimplexNoise SNOW_NOISE = new OpenSimplexNoise(24);
+    public final OpenSimplexNoise GRANITE_NOISE = new OpenSimplexNoise(25);
 
     @Override
     public RegistryKey<Biome> getFakingBiome() {
@@ -64,6 +65,8 @@ public class HighlandPeaksGen implements BiomeGen {
             return Blocks.GRASS_BLOCK.getDefaultState();
         } else if (random.nextDouble() < SNOW_NOISE.eval(x / 45.0, z / 45.0) + 0.2) {
             return Blocks.SNOW_BLOCK.getDefaultState();
+        } else if (random.nextDouble() + 0.1 < GRANITE_NOISE.eval(x / 45.0, z / 45.0) / 12) {
+            return Blocks.GRANITE.getDefaultState();
         }
         return Blocks.STONE.getDefaultState();
     }

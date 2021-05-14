@@ -8,6 +8,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import supercoder79.survivalgames.game.map.biome.BiomeGen;
+import supercoder79.survivalgames.game.map.gen.SpringGen;
 import xyz.nucleoid.plasmid.game.gen.MapGen;
 import xyz.nucleoid.plasmid.game.gen.feature.ShrubGen;
 
@@ -35,12 +36,12 @@ public class HighlandSpringGen implements BiomeGen {
 
     @Override
     public double upperLerpHigh() {
-        return 8;
+        return 12;
     }
 
     @Override
     public double upperLerpLow() {
-        return 4;
+        return 8;
     }
 
     @Override
@@ -80,12 +81,12 @@ public class HighlandSpringGen implements BiomeGen {
 
     @Override
     public MapGen tree(int x, int z, Random random) {
-        return ShrubGen.INSTANCE;
+        return SpringGen.INSTANCE;
     }
 
     @Override
     public double modifyTreeChance(double original) {
-        return 0;
+        return 0.00000001;
     }
 
     @Override

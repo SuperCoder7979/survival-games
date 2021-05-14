@@ -15,7 +15,7 @@ public class HighlandBiomeGenerator implements BiomeGenerator {
     public BiomeGen getBiome(double temperature, double rainfall) {
         if (temperature < 0.6) {
             return temperature > 0.4 ? HighlandHillsGen.INSTANCE : HighlandPeaksGen.INSTANCE;
-        } else if (temperature > 0.85) {
+        } else if (temperature > 0.75) {
             return HighlandSpringGen.INSTANCE;
         }
         return HighlandPlainsGen.INSTANCE;
